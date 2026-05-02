@@ -191,7 +191,7 @@ function randomDate(random: () => number): string {
 
 function avatarPathForUserIndex(userIndex: number): string {
   const fileIndex = ((userIndex - 1) % GENERATED_AVATAR_COUNT) + 1
-  return `/avatars/avatar-${String(fileIndex).padStart(3, '0')}.png`
+  return `${import.meta.env.BASE_URL}avatars/avatar-${String(fileIndex).padStart(3, '0')}.png`
 }
 
 function activityTitle(category: string, random: () => number): string {
