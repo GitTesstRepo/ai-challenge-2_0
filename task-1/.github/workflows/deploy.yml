@@ -13,12 +13,16 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'leaderboard/package-lock.json'
       
       - name: Install dependencies
-        run: npm ci --prefix leaderboard
+        working-directory: ./leaderboard
+        run: npm ci
       
       - name: Build
-        run: npm run build --prefix leaderboard
+        working-directory: ./leaderboard
+        run: npm run build
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
