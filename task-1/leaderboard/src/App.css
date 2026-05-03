@@ -425,8 +425,9 @@
 .podium-card p {
   margin: 5px 0 0;
   font-family: var(--font-body);
-  color: #2c466d;
-  font-size: 15px;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .points-pill {
@@ -988,7 +989,7 @@
   }
 
   .podium-card p {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .row-main {

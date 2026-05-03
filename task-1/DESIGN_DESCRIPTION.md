@@ -37,7 +37,7 @@ Desktop font sizes:
 - Podium name (rank 3): 20px
 - Podium rank badge number (rank 1): 18px
 - Podium rank badge number (rank 2/3): 14px
-- Podium position/department: 15px
+- Podium position/department: 14px, font-weight 500
 - Podium points value (rank 1): 20px
 - Podium points value (rank 2/3): 18px
 - Podium rank number inside block: 102px
@@ -61,7 +61,7 @@ Mobile font sizes:
 - Podium name (rank 1): 24px
 - Podium name (rank 2): 20px
 - Podium name (rank 3): 20px
-- Podium position/department: 15px
+- Podium position/department: 14px, font-weight 500
 - Podium points value (rank 1): 20px
 - Podium points value (rank 2/3): 18px
 - List row rank number: 24px
