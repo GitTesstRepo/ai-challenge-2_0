@@ -862,6 +862,7 @@
 
   .leaderboard-wrap {
     width: 100%;
+    min-width: 0;
   }
 
   .title-group {
