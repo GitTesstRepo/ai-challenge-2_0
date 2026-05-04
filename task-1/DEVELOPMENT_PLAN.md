@@ -48,7 +48,10 @@ Out of scope:
   - Category badge
   - Date
   - Points
-- Keep filtering/search/sorting reflected in both podium and list.
+- Keep sorting/ranking derived from Year/Quarter/Category filters.
+- Apply search as a visibility filter only (no rank re-indexing).
+- Under active search, show podium cards only for users that are both in base top-3 and search results.
+- Preserve minimum podium container height (`64px`) even when no podium card is visible.
 - Support category dropdown values consistent with screenshot style.
 
 ## 4. Data Plan (Synthetic Only)
@@ -318,6 +321,15 @@ Latest adjustments (current pass + empty-result screenshot parity):
 - Replaced browser-native search clearing with an explicit right-aligned clear (`x`) button inside the search field.
 - Added a dedicated empty-result notice row with info icon and the message `No activities found matching the current filters.`
 - Hid the podium section when the filtered result set is empty.
+
+Latest adjustments (current pass + search/podium rank behavior):
+- Refactored ranking flow so rank order is computed from dropdown filters first (Year/Quarter/Category), then search narrows visible rows.
+- Preserved row and podium rank numbers under search (no re-indexing to 1..N after search filter).
+- Updated search-mode podium behavior:
+  - 0 matching base-top-3 users -> no podium cards rendered
+  - 1 matching base-top-3 user -> single podium card centered
+  - 2 matching base-top-3 users -> two podium cards centered side by side
+- Locked podium container minimum height to `64px` on desktop and mobile to preserve vertical rhythm when no podium cards are visible.
 
 Latest adjustments (current pass + header/background correction):
 - Moved the light background from the global page strip onto a dedicated inner leaderboard panel.

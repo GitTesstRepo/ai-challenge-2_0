@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import './App.css'
 import {
   categoryOptions,
@@ -97,23 +97,52 @@ function App() {
         }
       })
       .filter((user) => user.totalPoints > 0)
-      .filter((user) => {
-        const fullName = `${user.firstName} ${user.lastName}`.toLowerCase()
-        const haystack = `${fullName} ${user.position} ${user.departmentCode}`.toLowerCase()
-        return haystack.includes(query.trim().toLowerCase())
-      })
       .sort((a, b) => {
         if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints
         if (b.sessionCount !== a.sessionCount) return b.sessionCount - a.sessionCount
         return `${a.firstName} ${a.lastName}`.localeCompare(`${b.firstName} ${b.lastName}`)
       })
-  }, [users, selectedYear, selectedQuarter, selectedCategory, query])
+  }, [users, selectedYear, selectedQuarter, selectedCategory])
 
-  const podium = rankedUsers.slice(0, 3)
+  const normalizedQuery = query.trim().toLowerCase()
+  const isSearchActive = normalizedQuery.length > 0
+
+  const visibleUsers = useMemo<RankedUser[]>(() => {
+    if (!isSearchActive) return rankedUsers
+
+    return rankedUsers.filter((user) => {
+      const fullName = `${user.firstName} ${user.lastName}`.toLowerCase()
+      const haystack = `${fullName} ${user.position} ${user.departmentCode}`.toLowerCase()
+      return haystack.includes(normalizedQuery)
+    })
+  }, [rankedUsers, normalizedQuery, isSearchActive])
+
+  const podium = useMemo(() => {
+    const basePodium = rankedUsers.slice(0, 3)
+    if (!isSearchActive) return basePodium
+
+    const visibleUserIds = new Set(visibleUsers.map((user) => user.id))
+    return basePodium.filter((user) => visibleUserIds.has(user.id))
+  }, [rankedUsers, visibleUsers, isSearchActive])
+
   const orderedPodium = [podium[1], podium[0], podium[2]].filter(Boolean) as RankedUser[]
-  const hasResults = rankedUsers.length > 0
+  const hasResults = visibleUsers.length > 0
+  const showPodium = orderedPodium.length > 0
 
-  const getRank = (userId: string) => rankedUsers.findIndex((u) => u.id === userId) + 1
+  const rankById = useMemo(() => {
+    const map = new Map<string, number>()
+    rankedUsers.forEach((user, index) => {
+      map.set(user.id, index + 1)
+    })
+    return map
+  }, [rankedUsers])
+
+  const getRank = (userId: string) => rankById.get(userId) ?? 0
+
+  const podiumStyle =
+    orderedPodium.length > 0
+      ? ({ '--podium-columns': orderedPodium.length } as CSSProperties)
+      : undefined
 
   const onToggleExpand = (userId: string) => {
     setExpandedId((prev) => (prev === userId ? null : userId))
@@ -242,47 +271,49 @@ function App() {
           </label>
         </section>
 
-        {hasResults ? (
-          <section className="podium" aria-label="Top performers podium">
-          {orderedPodium.map((user) => {
-            const rank = getRank(user.id)
+        <section className="podium" aria-label="Top performers podium" style={podiumStyle}>
+          {showPodium
+            ? orderedPodium.map((user) => {
+                const rank = getRank(user.id)
 
-            return (
-              <article key={user.id} className={`podium-card rank-${rank}`}>
-                <div className="avatar-wrap">
-                  <img src={user.avatarUrl} alt="" />
-                  <span className={`rank-badge rank-badge-${rank}`}>{rank}</span>
-                </div>
+                return (
+                  <article key={user.id} className={`podium-card rank-${rank}`}>
+                    <div className="avatar-wrap">
+                      <img src={user.avatarUrl} alt="" />
+                      <span className={`rank-badge rank-badge-${rank}`}>{rank}</span>
+                    </div>
 
-                <h2>
-                  {user.firstName} {user.lastName}
-                </h2>
-                <p>
-                  {user.position} ({user.departmentCode})
-                </p>
+                    <h2>
+                      {user.firstName} {user.lastName}
+                    </h2>
+                    <p>
+                      {user.position} ({user.departmentCode})
+                    </p>
 
-                <div className="points-pill">
-                  <StarIcon />
-                  <strong>{pointsLabel(user.totalPoints)}</strong>
-                </div>
+                    <div className="points-pill">
+                      <StarIcon />
+                      <strong>{pointsLabel(user.totalPoints)}</strong>
+                    </div>
 
-                <div className="podium-step" aria-hidden="true">
-                  <span className="podium-step-number">{rank}</span>
-                </div>
-              </article>
-            )
-          })}
-          </section>
-        ) : (
+                    <div className="podium-step" aria-hidden="true">
+                      <span className="podium-step-number">{rank}</span>
+                    </div>
+                  </article>
+                )
+              })
+            : null}
+        </section>
+
+        {!hasResults ? (
           <section className="empty-state" aria-live="polite">
             <InfoIcon />
             <p>No activities found matching the current filters.</p>
           </section>
-        )}
+        ) : null}
 
         <section className="rows" aria-label="Leaderboard list">
-          {rankedUsers.map((user, index) => {
-            const rank = index + 1
+          {visibleUsers.map((user) => {
+            const rank = getRank(user.id)
             const isExpanded = expandedId === user.id
 
             return (

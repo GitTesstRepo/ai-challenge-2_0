@@ -94,7 +94,7 @@ Line-height and letter-spacing:
   - Quarter select
   - Category select
   - Search field
-- Podium section with 3 highlighted users.
+- Podium section with up to 3 highlighted users (search can reduce visible count).
 - Ranked list section with expandable rows.
 
 ## 3. Toolbar Requirements
@@ -132,6 +132,7 @@ Line-height and letter-spacing:
   - On focus, the magnifier icon hides.
   - Input text starts from the left edge of the field.
   - When search text is present, a dedicated clear (`x`) button appears on the right.
+  - Search narrows visible rows only and does not recalculate leaderboard rank values.
 
 ## 4. Podium Requirements
 - Top 3 users appear in this visual order (left-center-right): rank 2, rank 1, rank 3.
@@ -161,6 +162,13 @@ Line-height and letter-spacing:
 - Podium blocks keep only a subtle top inset shadow band; no blurred outer shadow is used.
 - At intermediate widths, all three podium blocks shrink proportionally together while staying centered with side breathing room.
 - The podium switches directly from 3 columns to 1 column at about `687px`.
+- Podium container minimum height is locked to `64px` on both desktop and mobile.
+- Podium behavior under active search:
+  - Evaluate podium membership from base top-3 after Year/Quarter/Category filters.
+  - Show only users that are both in base top-3 and current search results.
+  - If one podium user matches search, render that single podium card centered.
+  - If two podium users match search, render both cards side by side and centered.
+  - If no podium users match search, keep the podium area empty while preserving the `64px` minimum height.
 - Each podium card includes:
   - Avatar
   - Name
@@ -207,7 +215,7 @@ Expanded row state includes:
 - Consistency rule: sum of row points equals displayed TOTAL points.
 
 Empty result state:
-- Podium section is hidden when no rows match the filters.
+- Empty result state applies only when no rows match the active filters/search.
 - A compact notice row is shown with an info icon and the message: `No activities found matching the current filters.`
 
 ## 6. Data and Content Rules
@@ -222,6 +230,7 @@ Empty result state:
   - Name
   - Position
   - Department code
+- Rank consistency rule: displayed row rank and podium rank reflect dropdown-filtered leaderboard order (Year/Quarter/Category) and are not re-indexed by search.
 - One row expanded at a time.
 
 ## 7. Responsive Behavior
@@ -269,3 +278,8 @@ Implemented:
 
 Remaining tuning:
 - Final side-by-side visual QA pass per screenshot state.
+
+Latest behavior decisions (locked):
+- Search preserves rank numbers from dropdown-filtered leaderboard order.
+- Podium under search shows only matching users from the base top-3 (0/1/2/3 cards).
+- Podium container keeps `min-height: 64px` even when no podium cards are displayed.

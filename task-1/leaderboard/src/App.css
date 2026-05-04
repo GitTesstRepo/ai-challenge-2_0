@@ -323,9 +323,11 @@
 }
 
 .podium {
+  --podium-columns: 3;
   margin-top: 24px;
+  min-height: 64px;
   display: grid;
-  grid-template-columns: repeat(3, 280px);
+  grid-template-columns: repeat(var(--podium-columns), 280px);
   justify-content: center;
   gap: 24px;
   align-items: end;
@@ -784,8 +786,8 @@
   }
 
   .podium {
-    width: min(920px, calc(100% - 48px));
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(calc(var(--podium-columns) * 304px), calc(100% - 48px));
+    grid-template-columns: repeat(var(--podium-columns), minmax(0, 1fr));
     justify-content: center;
     gap: clamp(14px, 2vw, 24px);
     margin-left: auto;
