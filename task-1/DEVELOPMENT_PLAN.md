@@ -218,7 +218,9 @@ Latest adjustments (mobile table + minimum width):
 - Fixed mobile expanded activity table: column widths redistributed to (40/27/15/18%) so ACTIVITY gets more room while POINTS stays visible.
 - Category pill wraps to max 2 lines on mobile; DATE can wrap into 2-3 lines at narrow widths; POINTS stays one line.
 - Horizontal overflow behavior below compact threshold is scoped to full leaderboard row body only.
-- Podium keeps fitting behavior on narrow screens via dedicated <=435px scaling, while expanded row details continue fitting viewport width.
+- Podium keeps fitting behavior on narrow screens via dedicated <=435px scaling.
+- Expanded row details keep stable outer card borders while table content can overflow horizontally inside the card at narrow widths.
+- Scrollbar visibility is constrained to the bottom overflow region (expanded details); the row-body top scrollbar UI is hidden.
 - Updated documentation in `DESIGN_DESCRIPTION.md` to reflect scoped overflow and final mobile table column rules.
 
 Latest adjustments (final mobile parity corrections):

@@ -534,6 +534,7 @@
   border: 1px solid #cdd7e3;
   background: #fff;
   border-radius: 14px;
+  min-width: 0;
   box-shadow: 0 2px 8px rgba(11, 31, 66, 0.06);
   transition: box-shadow 150ms ease;
 }
@@ -548,6 +549,7 @@
 
 .row-main-scroll {
   width: 100%;
+  min-width: 0;
 }
 
 .row-main {
@@ -1005,6 +1007,13 @@
   .row-main-scroll {
     overflow-x: auto;
     overflow-y: hidden;
+    max-width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .row-main-scroll::-webkit-scrollbar {
+    display: none;
   }
 
   .row-main {
@@ -1065,7 +1074,8 @@
 
   .row-details {
     padding: 12px 14px;
-    overflow-x: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .row-details h4 {
@@ -1073,7 +1083,7 @@
   }
 
   .row-details table {
-    min-width: 0;
+    min-width: 420px;
     table-layout: fixed;
   }
 
@@ -1100,8 +1110,8 @@
   }
 
   .row-details td {
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   /* Points value must never wrap */

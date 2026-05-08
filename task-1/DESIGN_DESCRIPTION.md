@@ -257,7 +257,10 @@ Mobile:
   - Identity block on top
   - Footer area with metrics and expand control
   - Total block minimized/hidden to match reference behavior
-- Expanded table stays within viewport width (no panel overflow beyond screen edges).
+- Expanded details card keeps stable outer borders within the viewport.
+- Expanded table content may overflow horizontally inside the details card at narrow widths.
+- Overflow progression is right-to-left by table columns (POINTS first, then DATE, then CATEGORY) as width decreases.
+- Horizontal scrollbar for expanded table overflow is visible at the bottom of the details card.
 - Mobile expanded table column widths (fixed layout): Activity 40%, Category 27%, Date 15%, Points 18%.
 - Category pill text wraps to a maximum of 2 lines on mobile.
 - Date cell wraps across lines on mobile (2-3 lines are acceptable at narrow widths).
