@@ -226,6 +226,7 @@ Latest adjustments (mobile table + minimum width):
 Latest adjustments (final mobile parity corrections):
 - Reverted unintended <=435px scaling on full leaderboard rows and expanded details; kept only podium scaling in that rule.
 - Forced RECENT ACTIVITY table headers (`ACTIVITY`, `CATEGORY`, `DATE`, `POINTS`) to 12px across desktop and mobile by removing a <=1200px override.
+- Pinned mobile expand-arrow button to the visible right edge for row overflow scenarios, with sticky behavior disabled at `<=230px` so it can overflow naturally on ultra-narrow widths.
 
 Latest adjustments (current pass + spacing alignment):
 - Tuned podium vertical rhythm (avatar/name/points spacing) and podium block heights to closer match screenshot proportions.

@@ -191,6 +191,7 @@ Each row includes:
 - Expand/collapse circular button
 - Expand/collapse circular button size: `36px` desktop
 - Expand/collapse arrow darkens on hover/focus for better state affordance.
+- On mobile narrow layouts, the expand/collapse arrow is pinned to the visible right edge; at `<=230px` viewport width, pinning is disabled and the arrow can overflow with row content.
 - Row block minimum height: 96px.
 - List section max width: 1154px.
 - Row and filter cards lift with stronger shadow on hover.
