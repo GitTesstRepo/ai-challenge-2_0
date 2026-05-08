@@ -214,6 +214,17 @@ Latest adjustments (current pass + font-family alignment):
 - Rebalanced title/subtitle, podium, and row-name sizes for stronger parity.
 - Synced `DESIGN_DESCRIPTION.md` typography values with current CSS implementation.
 
+Latest adjustments (mobile table + minimum width):
+- Fixed mobile expanded activity table: column widths redistributed to (40/27/15/18%) so ACTIVITY gets more room while POINTS stays visible.
+- Category pill wraps to max 2 lines on mobile; DATE can wrap into 2-3 lines at narrow widths; POINTS stays one line.
+- Horizontal overflow behavior below compact threshold is scoped to full leaderboard row body only.
+- Podium keeps fitting behavior on narrow screens via dedicated <=435px scaling, while expanded row details continue fitting viewport width.
+- Updated documentation in `DESIGN_DESCRIPTION.md` to reflect scoped overflow and final mobile table column rules.
+
+Latest adjustments (final mobile parity corrections):
+- Reverted unintended <=435px scaling on full leaderboard rows and expanded details; kept only podium scaling in that rule.
+- Forced RECENT ACTIVITY table headers (`ACTIVITY`, `CATEGORY`, `DATE`, `POINTS`) to 12px across desktop and mobile by removing a <=1200px override.
+
 Latest adjustments (current pass + spacing alignment):
 - Tuned podium vertical rhythm (avatar/name/points spacing) and podium block heights to closer match screenshot proportions.
 - Adjusted ranked-row inner horizontal padding and right-side metrics/total spacing for desktop parity.

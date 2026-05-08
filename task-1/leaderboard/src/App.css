@@ -6,7 +6,7 @@
 
 .leaderboard-wrap {
   width: min(1204px, calc(100% - 48px));
-  min-width: 578px;
+  min-width: 435px;
   margin: 0 auto;
 }
 
@@ -546,6 +546,10 @@
   border-color: #0f93ef;
 }
 
+.row-main-scroll {
+  width: 100%;
+}
+
 .row-main {
   min-height: 96px;
   padding: 16px 26px;
@@ -819,9 +823,12 @@
 
   .podium-card p,
   .identity p,
-  .row-details th,
   .row-details td {
     font-size: 14px;
+  }
+
+  .row-details th {
+    font-size: 12px;
   }
 
   .total strong {
@@ -995,7 +1002,13 @@
     font-size: 14px;
   }
 
+  .row-main-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
   .row-main {
+    min-width: 435px;
     flex-direction: column;
     align-items: flex-start;
     padding: 12px 14px;
@@ -1064,9 +1077,36 @@
     table-layout: fixed;
   }
 
+  /* Mobile column widths: give more room to points, allow wrapping elsewhere */
+  .row-details th:nth-child(1),
+  .row-details td:nth-child(1) {
+    width: 40%;
+  }
+
+  .row-details th:nth-child(2),
+  .row-details td:nth-child(2) {
+    width: 27%;
+  }
+
+  .row-details th:nth-child(3),
+  .row-details td:nth-child(3) {
+    width: 15%;
+    white-space: normal;
+  }
+
+  .row-details th:nth-child(4),
+  .row-details td:nth-child(4) {
+    width: 18%;
+  }
+
   .row-details td {
     overflow-wrap: anywhere;
     word-break: break-word;
+  }
+
+  /* Points value must never wrap */
+  .points-cell {
+    white-space: nowrap;
   }
 
   .row-details th {
@@ -1076,5 +1116,65 @@
   .row-details td,
   .category-pill {
     font-size: 13px;
+  }
+
+  /* Allow category pill text to wrap to at most 2 lines on mobile */
+  .category-pill {
+    white-space: normal;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 1.3;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 435px) {
+  .podium {
+    margin-top: 22px;
+    gap: 20px;
+  }
+
+  .podium-card {
+    max-width: 266px;
+  }
+
+  .avatar-wrap {
+    width: 82px;
+    height: 82px;
+    margin-bottom: 10px;
+  }
+
+  .rank-1 .avatar-wrap {
+    width: 108px;
+    height: 108px;
+  }
+
+  .podium-card h2 {
+    font-size: 18px;
+  }
+
+  .rank-1 h2 {
+    font-size: 22px;
+  }
+
+  .rank-2 h2,
+  .rank-3 h2 {
+    font-size: 18px;
+  }
+
+  .podium-card p {
+    font-size: 13px;
+  }
+
+  .rank-1 .podium-step {
+    height: 160px;
+  }
+
+  .rank-2 .podium-step {
+    height: 132px;
+  }
+
+  .rank-3 .podium-step {
+    height: 102px;
   }
 }

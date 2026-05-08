@@ -29,7 +29,7 @@ To capture the design and layout without exposing real data, the following techn
 
 ### 2. Screenshot Capture of Modified State
 Once all real data was replaced with fake equivalents:
-- Took 7 reference screenshots at different viewport widths
+- Took 8 reference screenshots at different viewport widths
 - Captured key states:
   - Desktop view (wide layout, all filters on one row)
   - Intermediate responsive state (breakpoint where search wraps)

@@ -85,7 +85,7 @@ Line-height and letter-spacing:
 - Outer page heading sits on the gray page background.
 - Main leaderboard content sits inside a dedicated light panel (`#f8fafc`).
 - Main light panel maximum width: `1204px`.
-- Main light panel minimum width: `578px`.
+- Main light panel minimum width: `435px`.
 - Header area:
   - Title: "Leaderboard"
   - Subtitle: "Top performers based on contributions and activity"
@@ -233,6 +233,11 @@ Empty result state:
 - Rank consistency rule: displayed row rank and podium rank reflect dropdown-filtered leaderboard order (Year/Quarter/Category) and are not re-indexed by search.
 - One row expanded at a time.
 
+## 6.1 Minimum Width and Scroll Behavior (Locked)
+- Reference compact-width threshold: `435px`.
+- Below `435px`, horizontal overflow behavior is scoped to the full leaderboard row body area only (identity/metrics/controls block).
+- Podium and expanded row details should continue fitting the viewport (scale down/reflow as needed) rather than forcing page-level horizontal overflow.
+
 ## 7. Responsive Behavior
 Desktop:
 - Toolbar displayed in a single row.
@@ -253,6 +258,10 @@ Mobile:
   - Footer area with metrics and expand control
   - Total block minimized/hidden to match reference behavior
 - Expanded table stays within viewport width (no panel overflow beyond screen edges).
+- Mobile expanded table column widths (fixed layout): Activity 40%, Category 27%, Date 15%, Points 18%.
+- Category pill text wraps to a maximum of 2 lines on mobile.
+- Date cell wraps across lines on mobile (2-3 lines are acceptable at narrow widths).
+- Points cell is always kept on one line (`white-space: nowrap`).
 
 ## 8. Pixel-Precision Checklist
 - Typography hierarchy and weights match screenshots.

@@ -318,73 +318,75 @@ function App() {
 
             return (
               <article key={user.id} className={`row-card ${isExpanded ? 'expanded' : ''}`}>
-                <div className="row-main">
-                  <div className="left">
-                    <div className="rank-cell">{rank}</div>
-                    <img className="row-avatar" src={user.avatarUrl} alt="" />
-                    <div className="identity">
-                      <h3>
-                        {user.firstName} {user.lastName}
-                      </h3>
-                      <p>
-                        {user.position} ({user.departmentCode})
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="right">
-                    <div className="metrics">
-                      {user.learningCount > 0 ? (
-                        <div
-                          className="metric-item"
-                          title="Education"
-                          aria-label="Education"
-                        >
-                          <CapIcon />
-                          <span>{user.learningCount}</span>
-                        </div>
-                      ) : null}
-
-                      {user.sessionCount > 0 ? (
-                        <div
-                          className="metric-item"
-                          title="Public Speaking"
-                          aria-label="Public Speaking"
-                        >
-                          <ScreenIcon />
-                          <span>{user.sessionCount}</span>
-                        </div>
-                      ) : null}
-
-                      {user.partnershipCount > 0 ? (
-                        <div
-                          className="metric-item"
-                          title="University Partnership"
-                          aria-label="University Partnership"
-                        >
-                          <SmileIcon />
-                          <span>{user.partnershipCount}</span>
-                        </div>
-                      ) : null}
+                <div className="row-main-scroll">
+                  <div className="row-main">
+                    <div className="left">
+                      <div className="rank-cell">{rank}</div>
+                      <img className="row-avatar" src={user.avatarUrl} alt="" />
+                      <div className="identity">
+                        <h3>
+                          {user.firstName} {user.lastName}
+                        </h3>
+                        <p>
+                          {user.position} ({user.departmentCode})
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="total">
-                      <small>TOTAL</small>
-                      <strong>
-                        <StarIcon />
-                        {pointsLabel(user.totalPoints)}
-                      </strong>
-                    </div>
+                    <div className="right">
+                      <div className="metrics">
+                        {user.learningCount > 0 ? (
+                          <div
+                            className="metric-item"
+                            title="Education"
+                            aria-label="Education"
+                          >
+                            <CapIcon />
+                            <span>{user.learningCount}</span>
+                          </div>
+                        ) : null}
 
-                    <button
-                      type="button"
-                      className="expand-btn"
-                      onClick={() => onToggleExpand(user.id)}
-                      aria-expanded={isExpanded}
-                      aria-label={isExpanded ? 'Collapse row details' : 'Expand row details'}
-                    >
-                      {isExpanded ? <ChevronUp wide /> : <ChevronDown wide />}
-                    </button>
+                        {user.sessionCount > 0 ? (
+                          <div
+                            className="metric-item"
+                            title="Public Speaking"
+                            aria-label="Public Speaking"
+                          >
+                            <ScreenIcon />
+                            <span>{user.sessionCount}</span>
+                          </div>
+                        ) : null}
+
+                        {user.partnershipCount > 0 ? (
+                          <div
+                            className="metric-item"
+                            title="University Partnership"
+                            aria-label="University Partnership"
+                          >
+                            <SmileIcon />
+                            <span>{user.partnershipCount}</span>
+                          </div>
+                        ) : null}
+                      </div>
+
+                      <div className="total">
+                        <small>TOTAL</small>
+                        <strong>
+                          <StarIcon />
+                          {pointsLabel(user.totalPoints)}
+                        </strong>
+                      </div>
+
+                      <button
+                        type="button"
+                        className="expand-btn"
+                        onClick={() => onToggleExpand(user.id)}
+                        aria-expanded={isExpanded}
+                        aria-label={isExpanded ? 'Collapse row details' : 'Expand row details'}
+                      >
+                        {isExpanded ? <ChevronUp wide /> : <ChevronDown wide />}
+                      </button>
+                    </div>
                   </div>
                 </div>
 
