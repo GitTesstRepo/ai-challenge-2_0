@@ -28,7 +28,7 @@ function pointsLabel(value: number): string {
   return value.toLocaleString('en-US')
 }
 
-function dateLabel(isoDate: string): string {
+function dateParts(isoDate: string): { day: string; month: string; year: string } {
   const [year, month, day] = isoDate.split('-').map(Number)
   const monthNames = [
     'Jan',
@@ -45,7 +45,11 @@ function dateLabel(isoDate: string): string {
     'Dec',
   ]
 
-  return `${String(day).padStart(2, '0')}-${monthNames[month - 1]}-${year}`
+  return {
+    day: String(day).padStart(2, '0'),
+    month: monthNames[month - 1],
+    year: String(year),
+  }
 }
 
 function App() {
@@ -406,16 +410,26 @@ function App() {
                         {user.filteredActivities
                           .slice()
                           .sort((a, b) => b.date.localeCompare(a.date))
-                          .map((activity) => (
-                            <tr key={activity.id}>
-                              <td>{activity.title}</td>
-                              <td>
-                                <span className="category-pill">{activity.category}</span>
-                              </td>
-                              <td>{dateLabel(activity.date)}</td>
-                              <td className="points-cell">+{activity.points}</td>
-                            </tr>
-                          ))}
+                          .map((activity) => {
+                            const { day, month, year } = dateParts(activity.date)
+
+                            return (
+                              <tr key={activity.id}>
+                                <td>{activity.title}</td>
+                                <td>
+                                  <span className="category-pill">{activity.category}</span>
+                                </td>
+                                <td className="date-cell">
+                                  <time className="date-value" dateTime={activity.date}>
+                                    {day}-<wbr />
+                                    {month}-<wbr />
+                                    {year}
+                                  </time>
+                                </td>
+                                <td className="points-cell">+{activity.points}</td>
+                              </tr>
+                            )
+                          })}
                       </tbody>
                     </table>
                   </div>

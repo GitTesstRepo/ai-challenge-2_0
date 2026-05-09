@@ -735,7 +735,8 @@
 }
 
 .row-details td:nth-child(3) {
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .row-details th:nth-child(1),
@@ -1101,13 +1102,14 @@
 
   .row-details th:nth-child(2),
   .row-details td:nth-child(2) {
-    width: 27%;
+    width: 32%;
   }
 
   .row-details th:nth-child(3),
   .row-details td:nth-child(3) {
-    width: 15%;
+    width: 11%;
     white-space: normal;
+    word-break: break-word;
   }
 
   .row-details th:nth-child(4),
