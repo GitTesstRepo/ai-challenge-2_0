@@ -210,6 +210,7 @@ Expanded row state includes:
   - `[REG]` and `[EDU]` for `Public Speaking`
   - `[UNI]` for `University Partnership`
 - Category rendered as rounded pill.
+- Activity and Category values in the expanded table use semibold emphasis (`font-weight: 600`).
 - Date format: `DD-Mon-YYYY` (example: `14-May-2025`).
 - Points shown with leading plus sign.
 - Consistency rule: expanded row count equals (`hat` + `tv` + `smile`) icon counts combined.
@@ -262,9 +263,13 @@ Mobile:
 - Expanded table content may overflow horizontally inside the details card at narrow widths.
 - Overflow progression is right-to-left by table columns (POINTS first, then DATE, then CATEGORY) as width decreases.
 - Horizontal scrollbar for expanded table overflow is visible at the bottom of the details card.
-- Mobile expanded table column widths (fixed layout): Activity 40%, Category 27%, Date 15%, Points 18%.
+- Mobile expanded table column widths (fixed layout): Activity 34%, Category 36%, Date 12%, Points 18%.
+- Activity cell allows aggressive wrapping (2-4 lines on narrow phones) before forcing horizontal overflow.
 - Category pill text wraps to a maximum of 2 lines on mobile.
-- Date cell wraps across lines on mobile (2-3 lines are acceptable at narrow widths).
+- Date cell wraps progressively on mobile using soft break opportunities:
+  - `14-Nov-2025`
+  - `14-Nov-` then `2025`
+  - `14-` then `Nov-` then `2025`
 - Points cell is always kept on one line (`white-space: nowrap`).
 
 ## 8. Pixel-Precision Checklist

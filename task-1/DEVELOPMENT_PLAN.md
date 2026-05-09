@@ -258,6 +258,15 @@ Latest adjustments (current pass + fixed podium dimensions):
   - Rank 1: 280 x 178
   - Rank 2: 280 x 146
   - Rank 3: 280 x 114
+
+Latest adjustments (recent activity mobile readability):
+- Updated expanded mobile table width distribution to Activity/Category/Date/Points = 34/36/12/18.
+- Enabled stronger Activity-cell wrapping so long titles can span multiple lines before the POINTS column moves out of view.
+- Updated DATE rendering to progressive wrapping behavior with soft break opportunities:
+  - full line: `14-Nov-2025`
+  - medium wrap: `14-Nov-` then `2025`
+  - narrow wrap: `14-` then `Nov-` then `2025`
+- Applied semibold text (`font-weight: 600`) for ACTIVITY and CATEGORY values in RECENT ACTIVITY rows (desktop and mobile).
 - Ensured rank 3 block is lower than rank 2, matching the reference.
 
 Latest adjustments (current pass + podium name section sizing):

@@ -749,6 +749,11 @@
   width: 22%;
 }
 
+.row-details td:nth-child(1),
+.row-details td:nth-child(2) {
+  font-weight: 600;
+}
+
 .row-details th:nth-child(3),
 .row-details td:nth-child(3) {
   width: 18%;
@@ -1090,24 +1095,24 @@
   }
 
   .row-details table {
-    min-width: 420px;
+    min-width: 390px;
     table-layout: fixed;
   }
 
-  /* Mobile column widths: give more room to points, allow wrapping elsewhere */
+  /* Mobile column widths: prioritize keeping points visible while text wraps */
   .row-details th:nth-child(1),
   .row-details td:nth-child(1) {
-    width: 40%;
+    width: 34%;
   }
 
   .row-details th:nth-child(2),
   .row-details td:nth-child(2) {
-    width: 32%;
+    width: 36%;
   }
 
   .row-details th:nth-child(3),
   .row-details td:nth-child(3) {
-    width: 11%;
+    width: 12%;
     white-space: normal;
     word-break: break-word;
   }
@@ -1115,6 +1120,13 @@
   .row-details th:nth-child(4),
   .row-details td:nth-child(4) {
     width: 18%;
+  }
+
+  .row-details td:nth-child(1) {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.3;
   }
 
   .row-details td {
