@@ -237,8 +237,9 @@ Empty result state:
 
 ## 6.1 Minimum Width and Scroll Behavior (Locked)
 - Reference compact-width threshold: `435px`.
-- Below `435px`, horizontal overflow behavior is scoped to the full leaderboard row body area only (identity/metrics/controls block).
-- Podium and expanded row details should continue fitting the viewport (scale down/reflow as needed) rather than forcing page-level horizontal overflow.
+- Below `435px`, the main leaderboard row body (identity/metrics/controls) should remain within viewport width without horizontal scrolling.
+- Horizontal overflow is limited to the expanded details table region when necessary.
+- Podium and expanded row details outer card boundaries should continue fitting the viewport (scale down/reflow as needed) rather than forcing page-level horizontal overflow.
 
 ## 7. Responsive Behavior
 Desktop:

@@ -267,6 +267,7 @@ Latest adjustments (recent activity mobile readability):
   - medium wrap: `14-Nov-` then `2025`
   - narrow wrap: `14-` then `Nov-` then `2025`
 - Applied semibold text (`font-weight: 600`) for ACTIVITY and CATEGORY values in RECENT ACTIVITY rows (desktop and mobile).
+- Removed horizontal scrolling from the mobile person row area (name/position/metrics/chevron); kept horizontal overflow only for the RECENT ACTIVITY details table when needed.
 - Ensured rank 3 block is lower than rank 2, matching the reference.
 
 Latest adjustments (current pass + podium name section sizing):
